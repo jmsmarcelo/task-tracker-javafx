@@ -19,10 +19,7 @@ public class TaskRepository {
             bw.write("[");
             for(int i = 0; i < tasks.size(); i++) {
                 bw.newLine();
-                bw.write("\t" + tasks.get(i).toJson() + ( i < (tasks.size() - 1) ? "," : ""));
-            }
-            if(tasks.size() > 0) {
-                bw.newLine();
+                bw.write("\t" + tasks.get(i).toJson() + ( i < (tasks.size() - 1) ? "," : System.lineSeparator()));
             }
             bw.write("]");
             return true;
