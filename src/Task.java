@@ -37,4 +37,9 @@ public class Task {
     public void setUpdatedAt(LocalDateTime updatedAt) {
         this.updatedAt = updatedAt;
     }
+    public String toJson() {
+        return """
+                {"id":%d,"description":"%s","status":"%s","createdAt":"%s","updatedAt":"%s"}"""
+                .formatted(id, description, status.toString(), createdAt, updatedAt);
+    }
 }
