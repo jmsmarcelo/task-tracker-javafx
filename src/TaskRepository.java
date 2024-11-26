@@ -18,8 +18,7 @@ public class TaskRepository {
         try(BufferedWriter bw = new BufferedWriter(new FileWriter(TASK_DATA_FILE))) {
             bw.write("[");
             for(int i = 0; i < tasks.size(); i++) {
-                bw.newLine();
-                bw.write("\t" + tasks.get(i).toJson() + ( i < (tasks.size() - 1) ? "," : System.lineSeparator()));
+                bw.write("\n\t" + tasks.get(i).toJson() + ( i < (tasks.size() - 1) ? "," : "\n"));
             }
             bw.write("]");
             return true;

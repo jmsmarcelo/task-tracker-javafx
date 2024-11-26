@@ -1,4 +1,8 @@
+import java.io.IOException;
+
 public class TaskCli {
+    private static final TaskService service = new TaskService();
+
     public static void main(String[] args) {
         if(args.length == 0) {
             System.out.println("No command found\nUse 'help' for a list of commands");
@@ -16,7 +20,31 @@ public class TaskCli {
         }
     }
     private static void handleAddCommand(String[] args) {
-
+        if(args.length != 2) {
+            System.out.print("""
+                Invalid command.
+                Usage:      add <description>
+                Example:    add "Buy groceries"
+                """);
+            return;
+        }
+        if(args[1].isBlank()) {
+            System.out.println("Task no description is not allowed");
+            return;
+        }
+        try {
+            Long id = service.add(args[1]);
+            if(id == 0) {
+                System.out.println("No Task found for add");
+            } else {
+                System.out.println("Task added successfully (ID: %d)".formatted(id));
+            }
+        } catch (IOException e) {
+            System.out.print("""
+                Error:              Could not add the task to data file
+                Possible reason:    No permission to write to file
+                """);
+        }
     }
     private static void handleUpdateCommand(String[] args) {
 
