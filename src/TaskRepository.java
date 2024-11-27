@@ -1,9 +1,14 @@
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 
 public class TaskRepository {
@@ -23,6 +28,22 @@ public class TaskRepository {
             bw.write("]");
             return true;
         }
+    }
+    public List<Task> loadData(String regex) throws FileNotFoundException, IOException {
+        List<Task> tasks = new ArrayList<Task>();
+        File file = new File(TASK_DATA_FILE);
+        if(!file.exists()) {
+            return tasks;
+        }
+        try(BufferedReader br = new BufferedReader(new FileReader(TASK_DATA_FILE))) {
+            String line;
+            while((line = br.readLine()) != null) {
+                if(line.matches(regex)) {
+                    tasks.add(Task.fromJson(line));
+                }
+            }
+        }
+        return tasks;
     }
     public long loadNextTaskId() {
         long nextTaskId = 1;
