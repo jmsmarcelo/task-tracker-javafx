@@ -56,7 +56,25 @@ public class TaskCli {
 
     }
     private static void handleListCommand(String[] args) {
-
+        try {
+            if(args.length == 1) {
+                service.list("all").forEach(System.out::println);
+            } else if(args.length == 2 && TaskStatus.isValid(args[1])) {
+                service.list(args[1]).forEach(System.out::println);
+            } else {
+                System.out.print("""
+                    Invalid command
+                    Usage:      list [%s]
+                    Example:    list
+                                list done
+                    """.formatted(TaskStatus.valuesJoin("|")));
+            }
+        } catch (IOException e) {
+            System.out.print("""
+                Error:              Could not load the tasks from data file
+                Possible reason:    No permission to read to file
+                """);
+        }
     }
     private static void handleHelpCommand() {
 
