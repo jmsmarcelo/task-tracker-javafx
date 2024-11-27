@@ -22,7 +22,7 @@ public class TaskCli {
     private static void handleAddCommand(String[] args) {
         if(args.length != 2) {
             System.out.print("""
-                invalid command.
+                invalid command
                 usage:      add <description>
                 example:    add "Buy groceries"
                 """);
@@ -49,7 +49,7 @@ public class TaskCli {
     private static void handleUpdateCommand(String[] args) {
         if(args.length != 3 || !args[1].matches("\\d+")) {
             System.out.print("""
-                invalid command.
+                invalid command
                 usage:      update <id> <description>
                 example:    update 1 "Buy groceries and cook dinner"
                 """);
@@ -75,7 +75,7 @@ public class TaskCli {
     private static void handleDeleteCommand(String[] args) {
         if(args.length != 2 || !args[1].matches("\\d+")) {
             System.out.print("""
-                invalid command.
+                invalid command
                 usage:      delete <id>
                 example:    delete 1
                 """);
@@ -97,7 +97,7 @@ public class TaskCli {
     private static void handleMarkAsCommand(String[] args, TaskStatus status) {
         if(args.length != 2 || !args[1].matches("\\d+")) {
             System.out.print("""
-                invalid command.
+                invalid command
                 usage:      %1$s <id>
                 example:    %1$s 1
                 """.formatted(args[0]));
@@ -139,6 +139,25 @@ public class TaskCli {
         }
     }
     private static void handleHelpCommand() {
-
+        System.out.println("----------------------------- Task Tracker CLI - Help -----------------------------");
+        System.out.println("Available commands:");
+        System.out.println("    add <description>           - add a new task with the given description");
+        System.out.println("    update <id> <description>   - Update the task with the given ID");
+        System.out.println("    delete <id>                 - Delete the task with the given ID");
+        System.out.println("    mark-in-progress <id>       - Mark as 'in-progress' the task with the given ID");
+        System.out.println("    mark-done <id>              - Mark as 'done' the task with the given ID");
+        System.out.println("    list                        - List all tasks");
+        System.out.println("    list todo                   - List all tasks with status 'todo'");
+        System.out.println("    list in-progress            - List all tasks with status 'in-progress'");
+        System.out.println("    list done                   - List all tasks with status 'done'");
+        System.out.println("    help                        - Display this help message");
+        System.out.println();
+        System.out.println("Example usage:");
+        System.out.println("    java TaskCli add \"Buy groceries\"");
+        System.out.println("    java TaskCli update 1 \"Buy groceries and cook dinner\"");
+        System.out.println("    java TaskCli delete 1");
+        System.out.println("    java TaskCli mark-in-progress 1");
+        System.out.println("    java TaskCli list done");
+        System.out.println("-----------------------------------------------------------------------------------");
     }
 }
