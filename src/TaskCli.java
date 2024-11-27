@@ -5,7 +5,7 @@ public class TaskCli {
 
     public static void main(String[] args) {
         if(args.length == 0) {
-            System.out.println("No command found\nUse 'help' for a list of commands");
+            System.out.println("no command found\nuse 'help' for a list of commands");
             return;
         }
         switch(args[0]) {
@@ -16,15 +16,15 @@ public class TaskCli {
             case "mark-done" -> handleMarkAsCommand(args, TaskStatus.DONE);
             case "list" -> handleListCommand(args);
             case "help" -> handleHelpCommand();
-            default -> System.out.println("Invalid command\nUse 'help' for a list of commands");
+            default -> System.out.println("invalid command\nuse 'help' for a list of commands");
         }
     }
     private static void handleAddCommand(String[] args) {
         if(args.length != 2) {
             System.out.print("""
-                Invalid command.
-                Usage:      add <description>
-                Example:    add "Buy groceries"
+                invalid command.
+                usage:      add <description>
+                example:    add "Buy groceries"
                 """);
             return;
         }
@@ -35,23 +35,23 @@ public class TaskCli {
         try {
             Long id = service.add(args[1]);
             if(id == 0) {
-                System.out.println("No Task found for add");
+                System.out.println("no Task found for add");
             } else {
                 System.out.println("Task added successfully (ID: %d)".formatted(id));
             }
         } catch (IOException e) {
             System.out.print("""
-                Error:              Could not add the task to data file
-                Possible reason:    No permission to write to file
+                error:              could not add the Task to data file
+                possible reason:    no permission to write to file
                 """);
         }
     }
     private static void handleUpdateCommand(String[] args) {
         if(args.length != 3 || !args[1].matches("\\d+")) {
             System.out.print("""
-                Invalid command.
-                Usage:      update <id> <description>
-                Example:    update 1 "Buy groceries and cook dinner"
+                invalid command.
+                usage:      update <id> <description>
+                example:    update 1 "Buy groceries and cook dinner"
                 """);
             return;
         }
@@ -67,17 +67,17 @@ public class TaskCli {
             }
         } catch (NumberFormatException | IOException e) {
             System.out.print("""
-                Error:              Could not update the task to data file
-                Possible reason:    No permission to read/write to file
+                error:              Could not update the Task to data file
+                possible reason:    no permission to read/write to file
                 """);
         }
     }
     private static void handleDeleteCommand(String[] args) {
         if(args.length != 2 || !args[1].matches("\\d+")) {
             System.out.print("""
-                Invalid command.
-                Usage:      delete <id>
-                Example:    delete 1
+                invalid command.
+                usage:      delete <id>
+                example:    delete 1
                 """);
             return;
         }
@@ -89,13 +89,33 @@ public class TaskCli {
             }
         } catch (Exception e) {
             System.out.print("""
-                Error:              Could not delete the task to data file
-                Possible reason:    No permission to read/write to file
+                error:              could not delete the Task to data file
+                possible reason:    no permission to read/write to file
                 """);
         }
     }
     private static void handleMarkAsCommand(String[] args, TaskStatus status) {
-
+        if(args.length != 2 || !args[1].matches("\\d+")) {
+            System.out.print("""
+                invalid command.
+                usage:      %1$s <id>
+                example:    %1$s 1
+                """.formatted(args[0]));
+            return;
+        }
+        try {
+            if(service.update(Long.parseLong(args[1]), status)) {
+                System.out.println("Task marked as %s successfully"
+                    .formatted(args[0].replace("mark-", "")));
+            } else {
+                System.out.println("Task(ID: %s) not found".formatted(args[1]));
+            }
+        } catch (NumberFormatException | IOException e) {
+            System.out.print("""
+                error:              could not mark the Task as %s in the data file
+                possible reason:    no permission to read/write to file
+                """.formatted(args[0].replace("mark-", "")));
+        }
     }
     private static void handleListCommand(String[] args) {
         try {
@@ -105,16 +125,16 @@ public class TaskCli {
                 service.find(args[1]).forEach(System.out::println);
             } else {
                 System.out.print("""
-                    Invalid command
-                    Usage:      list [%s]
-                    Example:    list
+                    invalid command
+                    usage:      list [%s]
+                    example:    list
                                 list done
                     """.formatted(TaskStatus.valuesJoin("|")));
             }
         } catch (IOException e) {
             System.out.print("""
-                Error:              Could not load the tasks from data file
-                Possible reason:    No permission to read to file
+                error:              could not load the Tasks from data file
+                possible reason:    no permission to read to file
                 """);
         }
     }

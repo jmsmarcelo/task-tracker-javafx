@@ -2,6 +2,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.function.Consumer;
 
 public class TaskService {
     private final TaskRepository repository = new TaskRepository();
@@ -20,14 +21,10 @@ public class TaskService {
         return 0L;
     }
     public boolean update(long id, String description) throws FileNotFoundException, IOException {
-        List<Task> tasks = find("all");
-        Task task = findTaskById(id, tasks);
-        if(task == null) {
-            return false;
-        }
-        task.setDescription(description);
-        task.setUpdatedAt(LocalDateTime.now());
-        return repository.saveData(tasks);
+        return update(id, task -> task.setDescription(description));
+    }
+    public boolean update(long id, TaskStatus status) throws FileNotFoundException, IOException {
+        return update(id, task -> task.setStatus(status));
     }
     public boolean delete(long id) throws FileNotFoundException, IOException {
         List<Task> tasks = find("all");
@@ -43,5 +40,15 @@ public class TaskService {
     }
     private Task findTaskById(long id, List<Task> tasks) {
         return tasks.stream().filter(task -> task.getId() == id).findFirst().orElse(null);
+    }
+    private boolean update(long id, Consumer<Task> updater) throws FileNotFoundException, IOException {
+        List<Task> tasks = find("all");
+        Task task = findTaskById(id, tasks);
+        if(task == null) {
+            return false;
+        }
+        updater.accept(task);
+        task.setUpdatedAt(LocalDateTime.now());
+        return repository.saveData(tasks);
     }
 }

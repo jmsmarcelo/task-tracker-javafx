@@ -24,6 +24,9 @@ public class Task {
     public TaskStatus getStatus() {
         return status;
     }
+    public void setStatus(TaskStatus status) {
+        this.status = status;
+    }
     public void setStatus(String status) {
         this.status = TaskStatus.fromValue(status);
     }
