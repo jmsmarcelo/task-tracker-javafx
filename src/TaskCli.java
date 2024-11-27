@@ -47,7 +47,30 @@ public class TaskCli {
         }
     }
     private static void handleUpdateCommand(String[] args) {
-
+        if(args.length != 3 || !args[1].matches("\\d+")) {
+            System.out.print("""
+                Invalid command.
+                Usage:      update <id> <description>
+                Example:    update 1 "Buy groceries and cook dinner"
+                """);
+            return;
+        }
+        if(args[2].isBlank()) {
+            System.out.println("Task no description is not allowed");
+            return;
+        }
+        try {
+            if(service.update(Long.parseLong(args[1]), args[2])) {
+                System.out.println("Task updated successfully");
+            } else {
+                System.out.println("Task(ID: %s) not found".formatted(args[1]));
+            }
+        } catch (NumberFormatException | IOException e) {
+            System.out.print("""
+                Error:              Could not update the task to data file
+                Possible reason:    No permission to read/write to file
+                """);
+        }
     }
     private static void handleDeleteCommand(String[] args) {
 
