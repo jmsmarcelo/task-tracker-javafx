@@ -73,7 +73,26 @@ public class TaskCli {
         }
     }
     private static void handleDeleteCommand(String[] args) {
-
+        if(args.length != 2 || !args[1].matches("\\d+")) {
+            System.out.print("""
+                Invalid command.
+                Usage:      delete <id>
+                Example:    delete 1
+                """);
+            return;
+        }
+        try {
+            if(service.delete(Long.parseLong(args[1]))) {
+                System.out.println("Task deleted successfully");
+            } else {
+                System.out.println("Task(ID: %s) not found".formatted(args[1]));
+            }
+        } catch (Exception e) {
+            System.out.print("""
+                Error:              Could not delete the task to data file
+                Possible reason:    No permission to read/write to file
+                """);
+        }
     }
     private static void handleMarkAsCommand(String[] args, TaskStatus status) {
 
@@ -81,9 +100,9 @@ public class TaskCli {
     private static void handleListCommand(String[] args) {
         try {
             if(args.length == 1) {
-                service.list("all").forEach(System.out::println);
+                service.find("all").forEach(System.out::println);
             } else if(args.length == 2 && TaskStatus.isValid(args[1])) {
-                service.list(args[1]).forEach(System.out::println);
+                service.find(args[1]).forEach(System.out::println);
             } else {
                 System.out.print("""
                     Invalid command

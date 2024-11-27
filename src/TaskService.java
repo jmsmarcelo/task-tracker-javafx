@@ -7,7 +7,7 @@ public class TaskService {
     private final TaskRepository repository = new TaskRepository();
 
     public long add(String description) throws IOException {
-        List<Task> tasks = list("all");
+        List<Task> tasks = find("all");
         Task task = new Task();
         task.setId(repository.loadNextTaskId());
         task.setDescription(description);
@@ -20,7 +20,7 @@ public class TaskService {
         return 0L;
     }
     public boolean update(long id, String description) throws FileNotFoundException, IOException {
-        List<Task> tasks = list("all");
+        List<Task> tasks = find("all");
         Task task = findTaskById(id, tasks);
         if(task == null) {
             return false;
@@ -29,7 +29,15 @@ public class TaskService {
         task.setUpdatedAt(LocalDateTime.now());
         return repository.saveData(tasks);
     }
-    public List<Task> list(String filter) throws FileNotFoundException, IOException {
+    public boolean delete(long id) throws FileNotFoundException, IOException {
+        List<Task> tasks = find("all");
+        Task task = findTaskById(id, tasks);
+        if(task != null && tasks.remove(task)) {
+            return repository.saveData(tasks);
+        }
+        return false;
+    }
+    public List<Task> find(String filter) throws FileNotFoundException, IOException {
         String match = (filter.equals("all") ? ".*\"id\":\\d+.*" : ".*\"status\":\"%s\".*".formatted(filter));
         return repository.loadData(match);
     }
