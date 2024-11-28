@@ -33,7 +33,7 @@ public class TaskCli {
             return;
         }
         try {
-            Long id = service.add(args[1]);
+            Long id = service.add(args[1].replaceAll("[\\\\\"]+", ""));
             if(id == 0) {
                 System.out.println("no Task found for add");
             } else {
