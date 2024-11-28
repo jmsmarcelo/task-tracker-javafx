@@ -56,6 +56,38 @@ Alternatively, use automatic compile and run
      ./unix_run.sh
      ```
 
+## 📌 Usage
+   ```bash
+# Adding a new task
+java TaskCli add "Buy groceries"
+# output: Task added successfully (ID: 1)
+
+# Updating task
+java TaskCli update 1 "Buy groceries and cook dinner"
+# output: Task updated successfully
+
+# Deleting task
+java TaskCli delete 1
+# output: Task deleted successfully
+
+# Marking a task as in progress
+java TaskCli mark-in-progress 1
+# output: Task marked as in-progress successfully
+
+# Marking a task as done
+java TaskCli mark-done 1
+# output: Task marked as done successfully
+
+# Listing all tasks
+java TaskCli list
+# output: id: 1, description: Buy groceries and cook dinner, status: todo, createdAt: 2024-11-28T06:39:51.227335800, updatedAt: 2024-11-28T06:40:40.429241100
+
+# Listing tasks by status
+java TaskCli list todo
+java TaskCli list in-progress
+java TaskCli list done
+   ```
+
 ## 📦 Project Structure
 ```plaintext
 task-tracker-cli-java/
