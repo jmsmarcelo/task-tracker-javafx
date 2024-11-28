@@ -42,16 +42,16 @@ A command-line application to track and manage tasks, developed in **Java** as p
    ```
 Alternatively, use automatic compile and run
    - Windows
-     - Double click in `compile.bat` `run.bat`
+     - Double click in `win_compile.bat` `win_run.bat`
      
    - Linux/MacOS
      ```bash
      # Make scripts executable
-     chmod +x compile.sh run.sh
+     chmod +x unix_compile.sh unix_run.sh
 
      # Run the scripts
-     ./compile.sh
-     ./run.sh
+     ./unix_compile.sh
+     ./unix_run.sh
      ```
 
 ## 📦 Project Structure
