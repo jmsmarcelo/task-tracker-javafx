@@ -86,7 +86,7 @@ To contribute:
 5. Open a Pull Request.
 
 ## 📜 License
-This project is licensed under the **MIT License**. See the [LICENSE](https://github.com/jmsmarcelo/task-tracker-cli-java?tab=MIT-1-ov-file) file for details.
+This project is licensed under the **MIT License**. See the [LICENSE](https://github.com/jmsmarcelo/task-tracker-cli-java/blob/main/LICENSE) file for details.
 
 ## 🙋‍♂️ Author
 Created by [Jose Marcelo](https://jmsmarcelo.github.io/). Feel free to get in touch or explore more of my projects!
