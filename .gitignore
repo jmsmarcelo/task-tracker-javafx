@@ -1,2 +1,3 @@
-# Temporary compiled files for tests
-bin/*
+.vscode/
+bin/
+javafx*/
