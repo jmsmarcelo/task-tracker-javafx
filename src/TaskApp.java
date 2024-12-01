@@ -217,7 +217,7 @@ public class TaskApp extends Application {
             actionInfo.setText("ID is required");
             return;
         }
-        if(idField.getText().matches("[^\\d]+")) {
+        if(idField.getText().matches(".*[^\\d]+.*")) {
             actionInfo.setFill(Color.RED);
             actionInfo.setText("ID must be number");
             return;
@@ -251,7 +251,7 @@ public class TaskApp extends Application {
             actionInfo.setText("ID is required");
             return;
         }
-        if(idField.getText().matches("[^\\d]+")) {
+        if(idField.getText().matches(".*[^\\d]+.*")) {
             actionInfo.setFill(Color.RED);
             actionInfo.setText("ID must be number");
             return;
@@ -278,7 +278,7 @@ public class TaskApp extends Application {
             actionInfo.setText("ID is required");
             return;
         }
-        if(idField.getText().matches("[^\\d]+")) {
+        if(idField.getText().matches(".*[^\\d]+.*")) {
             actionInfo.setFill(Color.RED);
             actionInfo.setText("ID must be number");
             return;
