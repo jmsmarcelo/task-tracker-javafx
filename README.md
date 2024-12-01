@@ -83,6 +83,10 @@ task-tracker-javafx/
    ├─ TaskService.java     # Task service logic
    └─ TaskRepository.java  # file persistence handling
 ```
+## Screenshots
+![Screenshot 2024-12-01 090750](https://github.com/user-attachments/assets/2af3791e-3b37-4efe-ae96-39cb09419fde)
+![Screenshot 2024-12-01 090811](https://github.com/user-attachments/assets/aca9928d-332d-4982-a2f7-1b1244814928)
+![Screenshot 2024-12-01 090908](https://github.com/user-attachments/assets/8e714d04-dd12-470b-b0f4-ccd83341b0fa)
 
 ## 📖 How to Contribute
 
