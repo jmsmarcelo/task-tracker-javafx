@@ -1,8 +1,16 @@
-# Task Tracker CLI
+# Task Tracker GUI
 
-A command-line application to track and manage tasks, developed in **Java** as part of the [Task Tracker Project](https://roadmap.sh/projects/task-tracker) from **Roadmap.sh**.
+A GUI application to track and manage tasks, developed in **Java** as part of the [Task Tracker Project](https://roadmap.sh/projects/task-tracker) from **Roadmap.sh**.
 
-I would be grateful if anyone could help me with their upvotes: [My Solution](https://roadmap.sh/projects/task-tracker/solutions?u=66f7e663c45e253cb00d6b67) on Roadmap.sh
+This is a GUI version to [Task Tracker CLI](https://github.com/jmsmarcelo/task-tracker-cli-java)
+
+## 🚀 Help the Project Grow
+If you find this project useful or interesting, please consider giving it an upvote on Roadmap.sh! Your vote helps increase visibility and reach more people in the community. It’s a quick action that can make a big impact!
+### How to vote:
+Simply click the upvote button on the project’s page. It only takes a moment but truly supports the growth of the project and community.
+
+Thank you for your support! Let’s build something amazing together!
+### [My Project](https://roadmap.sh/projects/task-tracker/solutions?u=66f7e663c45e253cb00d6b67) on Roadmap.sh
 
 ## 📋 Features
 - Add, Update, and Delete tasks
@@ -15,7 +23,7 @@ I would be grateful if anyone could help me with their upvotes: [My Solution](ht
 ## ⚙️ Technologies and Tools
 
 - Language: **Java**
-- CLI Structure: Input/output handling
+- GUI Structure: **JavaFX**
 - Data Persistence: Store the tasks in a JSON file
 
 ## 🛠️ How to Run the Project
@@ -23,24 +31,33 @@ I would be grateful if anyone could help me with their upvotes: [My Solution](ht
 ### Prerequisites
 
 - **Java 17** or later installed
+- **JavaFX 17** or later
 - Read/write permission
 
 ### Steps to Execute
 
 1. Clone the repository:
   ```bash
-  git clone https://github.com/jmsmarcelo/task-tracker-cli-java.git
-  cd task-tracker-cli-java
+  git clone https://github.com/jmsmarcelo/task-tracker-javafx.git
+  cd task-tracker-javafx
   ```
-2. Compile the project:
+
+2. Add JavaFX SDK
+   ```bash
+   # Download and extract JavaFX SDK to task-tracker-javafx
+   # Download page: https://gluonhq.com/products/javafx/
+   ```
+
+3. Compile the project (Windows):
    ```bash
    mkdir bin
-   javac -d bin src/*.java
+   javac --module-path javafx-sdk*\lib --add-modules javafx.controls -d bin src\*.java
    ```
-3. Run the project:
+4. Run the project (Windows:
    ```bash
    cd bin
-   java TaskCli help
+   start "" javaw --module-path ..\javafx-sdk*\lib --add-modules javafx.controls TaskApp
+   exit
    ```
 Alternatively, use automatic compile and run
    - Windows
@@ -56,43 +73,11 @@ Alternatively, use automatic compile and run
      ./unix_run.sh
      ```
 
-## 📌 Usage
-   ```bash
-# Adding a new task
-java TaskCli add "Buy groceries"
-# output: Task added successfully (ID: 1)
-
-# Updating task
-java TaskCli update 1 "Buy groceries and cook dinner"
-# output: Task updated successfully
-
-# Deleting task
-java TaskCli delete 1
-# output: Task deleted successfully
-
-# Marking a task as in progress
-java TaskCli mark-in-progress 1
-# output: Task marked as in-progress successfully
-
-# Marking a task as done
-java TaskCli mark-done 1
-# output: Task marked as done successfully
-
-# Listing all tasks
-java TaskCli list
-# output: id: 1, description: Buy groceries and cook dinner, status: todo, createdAt: 2024-11-28T06:39:51.227335800, updatedAt: 2024-11-28T06:40:40.429241100
-
-# Listing tasks by status
-java TaskCli list todo
-java TaskCli list in-progress
-java TaskCli list done
-   ```
-
 ## 📦 Project Structure
 ```plaintext
-task-tracker-cli-java/
+task-tracker-javafx/
 └─ src/
-   ├─ TaskCli.java         # Application entry point
+   ├─ TaskApp.java         # Application GUI
    ├─ Task.java            # Task domain model
    ├─ TaskStatus.java      # Enum task status
    ├─ TaskService.java     # Task service logic
@@ -120,7 +105,7 @@ To contribute:
 5. Open a Pull Request.
 
 ## 📜 License
-This project is licensed under the **MIT License**. See the [LICENSE](https://github.com/jmsmarcelo/task-tracker-cli-java/blob/main/LICENSE) file for details.
+This project is licensed under the **MIT License**. See the [LICENSE](https://github.com/jmsmarcelo/task-tracker-javafx/blob/main/LICENSE) file for details.
 
 ## 🙋‍♂️ Author
 Created by [Jose Marcelo](https://jmsmarcelo.github.io/). Feel free to get in touch or explore more of my projects!
