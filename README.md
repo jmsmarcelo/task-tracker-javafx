@@ -1,16 +1,6 @@
 # Task Tracker GUI
 
-A GUI application to track and manage tasks, developed in **Java** as part of the [Task Tracker Project](https://roadmap.sh/projects/task-tracker) from **Roadmap.sh**.
-
-This is a GUI version to [Task Tracker CLI](https://github.com/jmsmarcelo/task-tracker-cli-java)
-
-## 🚀 Help the Project Grow
-If you find this project useful or interesting, please consider giving it an upvote on Roadmap.sh! Your vote helps increase visibility and reach more people in the community. It’s a quick action that can make a big impact!
-### How to vote:
-Simply click the upvote button on the project’s page. It only takes a moment but truly supports the growth of the project and community.
-
-Thank you for your support! Let’s build something amazing together!
-### [My Project](https://roadmap.sh/projects/task-tracker/solutions?u=66f7e663c45e253cb00d6b67) on Roadmap.sh
+A GUI application to track and manage tasks, developed in **Java** as part of the based on [CLI version](https://github.com/jmsmarcelo/task-tracker-cli-java) as part of the [Task Tracker Project](https://roadmap.sh/projects/task-tracker) from Roadmap.sh.
 
 ## 📋 Features
 - Add, Update, and Delete tasks

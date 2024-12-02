@@ -127,7 +127,7 @@ public class TaskApp extends Application {
         taskTableView.setMinWidth(734);
    
         TableColumn<Task, Long> taskIdTableColumn = new TableColumn<>("ID");
-        taskIdTableColumn.setMinWidth(50);
+        taskIdTableColumn.setPrefWidth(50);
         taskIdTableColumn.setStyle("-fx-alignment: BASELINE_CENTER");
         taskIdTableColumn.setCellValueFactory(
             new PropertyValueFactory<Task, Long>("id")
@@ -135,7 +135,7 @@ public class TaskApp extends Application {
         taskTableView.getColumns().add(taskIdTableColumn);
 
         TableColumn<Task, String> taskDescriptionTableColumn = new TableColumn<>("Description");
-        taskDescriptionTableColumn.setMinWidth(200);
+        taskDescriptionTableColumn.setMinWidth(230);
         taskDescriptionTableColumn.setStyle("-fx-alignment: BASELINE_CENTER");
         taskDescriptionTableColumn.setCellValueFactory(
             new PropertyValueFactory<Task, String>("description")
