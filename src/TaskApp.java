@@ -135,7 +135,7 @@ public class TaskApp extends Application {
         taskTableView.getColumns().add(taskIdTableColumn);
 
         TableColumn<Task, String> taskDescriptionTableColumn = new TableColumn<>("Description");
-        taskDescriptionTableColumn.setMinWidth(230);
+        taskDescriptionTableColumn.setMinWidth(330);
         taskDescriptionTableColumn.setStyle("-fx-alignment: BASELINE_CENTER");
         taskDescriptionTableColumn.setCellValueFactory(
             new PropertyValueFactory<Task, String>("description")
@@ -150,19 +150,19 @@ public class TaskApp extends Application {
         );
         taskTableView.getColumns().add(taskStatusTableColumn);
 
-        TableColumn<Task, LocalDateTime> taskCreatedAtTableColumn = new TableColumn<>("CreatedAt");
-        taskCreatedAtTableColumn.setMinWidth(179);
+        TableColumn<Task, String> taskCreatedAtTableColumn = new TableColumn<>("CreatedAt");
+        taskCreatedAtTableColumn.setMinWidth(130);
         taskCreatedAtTableColumn.setStyle("-fx-alignment: BASELINE_CENTER");
         taskCreatedAtTableColumn.setCellValueFactory(
-            new PropertyValueFactory<Task, LocalDateTime>("createdAt")
+            new PropertyValueFactory<Task, String>("createdAt")
         );
         taskTableView.getColumns().add(taskCreatedAtTableColumn);
 
-        TableColumn<Task, LocalDateTime> taskUpdatedAtTableColumn = new TableColumn<>("UpdatedAt");
-        taskUpdatedAtTableColumn.setMinWidth(179);
+        TableColumn<Task, String> taskUpdatedAtTableColumn = new TableColumn<>("UpdatedAt");
+        taskUpdatedAtTableColumn.setMinWidth(130);
         taskUpdatedAtTableColumn.setStyle("-fx-alignment: BASELINE_CENTER");
         taskUpdatedAtTableColumn.setCellValueFactory(
-            new PropertyValueFactory<Task, LocalDateTime>("updatedAt")
+            new PropertyValueFactory<Task, String>("updatedAt")
         );
         taskTableView.getColumns().add(taskUpdatedAtTableColumn);
 
@@ -217,7 +217,7 @@ public class TaskApp extends Application {
             actionInfo.setText("ID is required");
             return;
         }
-        if(idField.getText().matches(".*[^\\d]+.*")) {
+        if(!idField.getText().trim().matches("\\d+")) {
             actionInfo.setFill(Color.RED);
             actionInfo.setText("ID must be number");
             return;
@@ -228,14 +228,14 @@ public class TaskApp extends Application {
             return;
         }
         try {
-            if(service.update(Long.parseLong(idField.getText()), descriptionField.getText())) {
+            if(service.update(Long.parseLong(idField.getText().trim()), descriptionField.getText().trim())) {
                 actionInfo.setFill(Color.GREEN);
-                actionInfo.setText("Task(ID: %s) updated successfully".formatted(idField.getText()));
+                actionInfo.setText("Task updated successfully (ID: %s)".formatted(idField.getText().trim()));
                 idField.setText("");
                 descriptionField.setText("");
             } else {
                 actionInfo.setFill(Color.RED);
-                actionInfo.setText("Task(ID: %s) not found".formatted(idField.getText()));
+                actionInfo.setText("Task not found (ID: %s)".formatted(idField.getText()));
             }
         } catch (NumberFormatException | IOException e) {
             actionInfo.setFill(Color.RED);
@@ -251,7 +251,7 @@ public class TaskApp extends Application {
             actionInfo.setText("ID is required");
             return;
         }
-        if(idField.getText().matches(".*[^\\d]+.*")) {
+        if(!idField.getText().matches("\\d+")) {
             actionInfo.setFill(Color.RED);
             actionInfo.setText("ID must be number");
             return;
@@ -259,10 +259,10 @@ public class TaskApp extends Application {
         try {
             if(service.delete(Long.parseLong(idField.getText()))) {
                 actionInfo.setFill(Color.GREEN);
-                actionInfo.setText("Task(ID: %s) deleted successfully".formatted(idField.getText()));
+                actionInfo.setText("Task deleted successfully (ID: %s)".formatted(idField.getText()));
             } else {
                 actionInfo.setFill(Color.RED);
-                actionInfo.setText("Task(ID: %s) not found".formatted(idField.getText()));
+                actionInfo.setText("Task not found");
             }
         } catch (NumberFormatException | IOException e) {
             actionInfo.setFill(Color.RED);
@@ -278,18 +278,18 @@ public class TaskApp extends Application {
             actionInfo.setText("ID is required");
             return;
         }
-        if(idField.getText().matches(".*[^\\d]+.*")) {
+        if(!idField.getText().trim().matches("\\d+")) {
             actionInfo.setFill(Color.RED);
             actionInfo.setText("ID must be number");
             return;
         }
         try {
-            if(service.update(Long.parseLong(idField.getText()), status)) {
+            if(service.update(Long.parseLong(idField.getText().trim()), status)) {
                 actionInfo.setFill(Color.GREEN);
-                actionInfo.setText("Task(ID: %s) marked as %s successfully".formatted(idField.getText(), status.toString()));
+                actionInfo.setText("Task marked as %s successfully (ID: %s)".formatted(status.toString(), idField.getText().trim()));
             } else {
                 actionInfo.setFill(Color.RED);
-                actionInfo.setText("Task(ID: %S) not found".formatted(idField.getText()));
+                actionInfo.setText("Task not found");
             }
         } catch (NumberFormatException | IOException e) {
             actionInfo.setFill(Color.RED);
